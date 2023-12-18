@@ -76,6 +76,9 @@ section{
     align-items: center;
     gap: 5rem;
 }
+#hi {
+    font-size: 5rem;
+}
 .home-content h3{
     font-size: 3.2rem;
     font-weight: 700;
@@ -164,14 +167,13 @@ span{
 }
 .aboutImg{
     border-radius: 50%;
-    border: 10px solid var(--main-color);
-    box-shadow: 0 0 50px var(--main-color),
-    0 0 25px var(--main-colo);
-    width: 36vw;
-    height: 36vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: var(--main-color);
+    box-shadow: 0 0 20px var(--main-color),
+    0 0 5px var(--main-color);
+    width: 35vw;
+    height: 35vw;
+    
+   
 }
 .aboutImg img{
     width: 35vw;
@@ -183,14 +185,16 @@ span{
     text-align: center;
     font-size: 8rem;
 }
-.about-content h2{
+.aboutContent h2{
     text-align: left;
-    line-height: 1.5;
+    line-height: 1;
+    font-size: 5rem;
+    
 }
-.about-content h3{
+.aboutContent h3{
     font-size: 2.6rem;
 }
-.about-content p{
+.aboutContent p{
     font-size: 1.6rem;
     margin: 2rem 0 3rem;
 }
