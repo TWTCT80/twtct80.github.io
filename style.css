@@ -87,7 +87,7 @@ span{
     color: var(--main-color);
     text-shadow: 0 0 25px var(--main-color);
 }
-.home-content h3.nth-of-type(2){
+.home-content h3:nth-of-type(2){
     margin-bottom: 2rem;
     font-size: 4rem;
 }
@@ -208,6 +208,13 @@ span{
     flex-wrap: wrap;
     gap: 2rem;
 }
+.servicebox .italic{
+    font-style: italic;
+    color: var(--main-color);
+}
+.servicebox li{
+    list-style-type: none;
+}
 .serviceContainer .servicebox{
     flex: 1 1 40rem;
     background: var(--second-bg-color);
@@ -226,10 +233,12 @@ span{
     font-size: 6rem;
     color: var(--main-color);
 }
-
-
 .servicebox h3{
     font-size: 2.6rem;
+}
+.servicebox h4{
+    font-size: 1.5rem;
+    color: var(--main-color);
 }
 .servicebox p{
     font-size: 1.6rem;
@@ -450,14 +459,17 @@ span{
         font-size: 5rem;
     }
     .home-img img{
-        margin-top: 4rem;
-        width: 70vw;
+        
+        width: 40vw;
+        height: auto;
+        display: flex;
     }
     .about{
         flex-direction: column-reverse;
     }
     .about img{
-        width: 70vw;
+        width: 40vw;
+        height: auto;
         margin-top: 4rem;
     }
     .services h2{
