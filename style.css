@@ -253,6 +253,7 @@ span{
 }
 .portfolio{
     background: var(--second-bg-color);
+    
 }
 .portfolio h2{
     margin-bottom: 4rem;
@@ -321,6 +322,7 @@ span{
     font-size: 3rem;
     color: var(--second-bg-color);
 }
+
 .contact h2{
     margin-bottom: 3rem;
 }
