@@ -162,10 +162,10 @@ span{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10rem;
+    gap: 4rem;
     background: var(--second-bg-color);
 }
-.aboutImg{
+.about Img{
     border-radius: 50%;
     background-color: var(--main-color);
     box-shadow: 0 0 20px var(--main-color),
@@ -175,11 +175,12 @@ span{
     
    
 }
-.aboutImg img{
+.about img{
     width: 35vw;
     height: 35vw;
     border-radius: 50%;
-    top: 1rem;
+    margin-bottom: 4rem;
+    
 }
 .heading{
     text-align: center;
@@ -224,6 +225,7 @@ span{
     border: 0.2rem solid var(--bg-color);
     cursor: pointer;
     transition: 0.5s ease;
+    height: 400px;
 }
 .serviceContainer .servicebox:hover{
     border-color: var(--main-color);
@@ -323,14 +325,24 @@ span{
     color: var(--second-bg-color);
 }
 
+
+
+
 .contact h2{
     margin-bottom: 3rem;
 }
+.ContactContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;}
 .contact form{
     max-width: 70rem;
     margin: 1rem;
     text-align: center;
     margin-bottom: 3rem;
+    
 }
 .contact form .input-box{
     display: flex;

@@ -39,12 +39,13 @@ html{
         margin-left: 60px;
         font-size: 15px;
         font-weight: 600;
-        border-bottom: 2px solid transparent;
+        
         transition: all 0.55s ease;
     }
     
     .gbar a:hover{
-        border-bottom: 2px solid orange;
+    
+        
     }
     
 }
@@ -72,7 +73,7 @@ html{
 .gbar a:hover,
 .gbar a.active{
     color: var(--main-color);
-    border-bottom: 3px solid var(--main-color);
+    
 }
 #menu-icon{
     color: white;
@@ -168,8 +169,8 @@ span{
         top: 100%;
         right: -100%;
         width: 150px;
-        height: 40vh;
-        background: grey;
+        height: 50vh;
+        background:var(--second-bg-color);
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -185,14 +186,10 @@ span{
         padding: 10px 50px 10px 0;
         text-align: center;
         font-size: 1.5rem;
+        
     }
     .gbar.open {
         right: 0px;
     }
-    .gbar a:hover,
-    .gbar a.active{
-    color: var(--main-color);
-    border-bottom: none;
     
-}
 }
