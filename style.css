@@ -478,6 +478,12 @@ span{
         height: auto;
         display: flex;
     }
+    .home-img{
+        
+        width: 40vw;
+        height: auto;
+        display: flex;
+    }
     .about{
         flex-direction: column-reverse;
     }
