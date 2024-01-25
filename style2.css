@@ -154,6 +154,8 @@ span{
     white-space: nowrap;
 }
 
+
+
 @media only screen and (max-width: 900px) {
     .container .box{
         flex-direction: column;
