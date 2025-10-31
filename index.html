@@ -4,253 +4,240 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tom Thorsén — Portfolio</title>
-  <meta name="description" content="Tatuerare → IT & Cybersäkerhet. Mini‑projekt, labbar, script och design." />
+  <meta name="description" content="Tatuerare → IT & Cybersäkerhet. Mini-projekt, labbar, script och design." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
- <style>
-  :root{
-    --bg:#0b0b0b; --card:#141414; --muted:#9aa0a6; --txt:#e9e9e9; --accent:#e11d48; /* crimson */
-    --ok:#22c55e; --warn:#f59e0b; --ring:rgba(225,29,72,.35);
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Ubuntu,Cantarell,"Noto Sans",sans-serif;
-    background:radial-gradient(1200px 700px at 80% -10%,rgba(225,29,72,.08),transparent), var(--bg);
-    color:var(--txt);
-  }
-  a{color:var(--txt); text-decoration:none}
-  a:hover{color:#fff}
 
-  .container{max-width:1100px; margin:0 auto; padding:28px 18px 64px}
+  <style>
+    /* === Design tokens === */
+    :root{
+      --bg:#0b0b0b; 
+      --card:#141414; 
+      --muted:#9aa0a6; 
+      --txt:#e9e9e9; 
+      --accent:#e11d48;            /* primär röd */
+      --accent-weak: rgba(225,29,72,.12);
+      --accent-ring: rgba(225,29,72,.35);
+      --accent-border: rgba(225,29,72,.45);
+      --ok:#22c55e; 
+      --warn:#f59e0b; 
+      --ring:rgba(225,29,72,.35);
+      --elev: 0 12px 30px -20px rgba(0,0,0,.7);
+      --elev-strong: 0 18px 38px -18px rgba(0,0,0,.85);
+    }
 
-  header{
-    display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0 22px;
-    position:sticky; top:0; backdrop-filter:saturate(1.1) blur(8px);
-    background:linear-gradient(180deg,rgba(11,11,11,.9),rgba(11,11,11,.6) 60%,transparent); z-index:10
-  }
-  .brand{display:flex; align-items:center; gap:14px}
-  .logo{
-    width:36px;height:36px;border-radius:10px;
-    background:conic-gradient(from 210deg at 50% 50%, var(--accent), #7f1d1d, #111);
-    box-shadow:0 0 0 2px rgba(255,255,255,.04), 0 10px 30px -10px var(--ring)
-  }
-  .title{font-weight:800; letter-spacing:.2px}
-  .tagline{color:var(--muted); font-size:.95rem}
+    /* === Base === */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Ubuntu,Cantarell,"Noto Sans",sans-serif;
+      background: radial-gradient(1200px 700px at 80% -10%,rgba(225,29,72,.08),transparent), var(--bg);
+      color:var(--txt);
+    }
+    a { color: var(--txt); text-decoration: none; }
+    a:hover {
+      color:#fff;
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 2px;
+    }
+    ::selection{ background: var(--accent); color:#fff; }
 
-  nav{display:flex; gap:14px; flex-wrap:wrap}
-  nav a{padding:8px 12px; border-radius:10px; background:#121212; border:1px solid #1e1e1e}
-  nav a:hover{border-color:#2a2a2a}
+    .container{max-width:1100px; margin:0 auto; padding:28px 18px 64px}
 
-  /* ===== Cards & hero ===== */
-  .card{
-    background:linear-gradient(180deg,#121212,#0f0f0f);
-    border:1px solid #1c1c1c; border-radius:16px; box-shadow:0 12px 30px -20px rgba(0,0,0,.7)
-  }
-  .card h2{margin:0 0 8px}
-  .muted{color:var(--muted)}
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0 22px;
+      position:sticky; top:0; backdrop-filter:saturate(1.1) blur(8px);
+      background:linear-gradient(180deg,rgba(11,11,11,.9),rgba(11,11,11,.6) 60%,transparent); z-index:10
+    }
+    .brand{display:flex; align-items:center; gap:14px}
+    .logo{
+      width:36px;height:36px;border-radius:10px;
+      background:conic-gradient(from 210deg at 50% 50%, var(--accent), #7f1d1d, #111);
+      box-shadow:0 0 0 2px rgba(255,255,255,.04), 0 10px 30px -10px var(--accent-ring)
+    }
+    .title{font-weight:800; letter-spacing:.2px}
+    .tagline{color:var(--muted); font-size:.95rem}
 
-  /* Old hero container spacing */
-  .hero{margin:14px 0 20px}
-  .hero .card{padding:22px}
+    nav{display:flex; gap:14px; flex-wrap:wrap}
+    nav a{padding:8px 12px; border-radius:10px; background:#121212; border:1px solid #1e1e1e}
+    nav a:hover{border-color:#2a2a2a}
 
-  /* Endast projektskorten i griden */
-  .card.project{
-    background: #270202; 
-    border: 5px solid #a70303;
-    box-shadow: 0 12px 30px -20px rgba(255, 140, 60, .15);        /* valfritt: lite ljusare kant */
-  }
+    /* === Cards & hero === */
+    .card{
+      background:linear-gradient(180deg,#121212,#0f0f0f);
+      border:1px solid #1c1c1c; border-radius:16px; box-shadow:var(--elev);
+    }
+    .card h2{margin:0 0 8px}
+    .muted{color:var(--muted)}
 
-  /* (valfritt) liten hover-effekt */
-  .card.project:hover{
-    filter:brightness(1.2);
-  }
+    .hero.card{
+      padding:24px;
+      backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,.08);
+      margin:14px 0 16px;
+    }
+    .hero-content{
+      display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:24px;
+    }
+    .hero-text{flex:1 1 60ch; min-width:280px}
+    .hero-text h1{ margin:0 0 10px 0; font-size:clamp(1.4rem, 2.4vw, 2.1rem); line-height:1.25; }
+    .hero-text h3{ margin:14px 0 6px 0; font-size:0.95rem; color:#eaeaea; font-weight:600; }
+    .hero-text p{ margin:0 0 10px 0; color:#d6d6d6; line-height:1.7; }
+    .hero-text em{font-style:normal; opacity:.9; text-decoration:underline; text-decoration-color:rgba(225,29,72,.35)}
+    .hero-text strong{color:#fff}
 
+    .hero-section{ display:grid; gap:.6rem; margin-bottom:1rem; }
+    .small{ font-size:.92rem; }
 
+    .divider{
+      height:1px; border:0; margin:12px 0;
+      background: linear-gradient(90deg,transparent,var(--accent),transparent);
+      opacity:.25;
+    }
 
-  /* New hero layout (applies when section has both .hero and .card) */
-  .hero.card{
-    padding:24px;
-    backdrop-filter: blur(6px);
-    border:1px solid rgba(255,255,255,.08);
-  }
-  .hero-content{
-    display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:24px;
-  }
-  .hero-text{flex:1 1 60ch; min-width:280px}
-  .hero-text h1{
-    margin:0 0 10px 0; font-size:clamp(1.4rem, 2.4vw, 2.1rem); line-height:1.25;
-  }
-  .hero-text h3{
-    margin:14px 0 6px 0; font-size:0.95rem; color:#eaeaea; font-weight:600;
-  }
-  .hero-text p{margin:0 0 10px 0; color:#d6d6d6}
-  .hero-text p.soft{color:#b3b3b3}
-  .hero-text em{font-style:normal; opacity:.9; text-decoration:underline; text-decoration-color:rgba(225,29,72,.35)}
-  .hero-text strong{color:#fff}
+    .hero-photo{min-width:140px}
+    .hero-photo img{
+      width:140px; height:140px; border-radius:50%; object-fit:cover;
+      border:2px solid var(--accent); box-shadow:0 0 18px var(--accent-ring);
+    }
+    @media (max-width:720px){
+      .hero-photo{order:-1; width:100%}
+      .hero-photo img{width:120px; height:120px}
+    }
 
-  .focus-list{
-    list-style:none; margin:6px 0 12px 0; padding:0;
-    display:flex; flex-wrap:wrap; gap:10px; color:#cfcfcf;
-  }
-  .focus-list li{
-    padding:6px 10px; border:1px solid rgba(255,255,255,.08);
-    border-radius:10px; background:rgba(255,255,255,.02);
-  }
+    /* === Controls / chips === */
+    .controls{display:flex; gap:10px; flex-wrap:wrap; margin:0}
+    .input, .chip{
+      background:#101010; border:1px solid #1c1c1c; color:var(--txt); border-radius:12px; padding:10px 12px
+    }
+    .input{min-width:220px}
+    .chip{display:inline-flex; align-items:center; gap:8px; cursor:pointer}
+    .chip[data-active="true"]{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+      background: var(--accent-weak);
+    }
+    .chip:hover{
+      border-color: var(--accent-border);
+      transform: translateY(-1px);
+    }
+    .chip, .input{ transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
 
-  .hero-photo{min-width:140px}
-  .hero-photo img{
-    width:140px; height:140px; border-radius:50%; object-fit:cover;
-    border:2px solid var(--accent); box-shadow:0 0 18px var(--ring);
-  }
+    /* === Search panel (separat kort) === */
+    .search-panel { margin: 16px 0 20px; padding: 16px 18px; }
 
-  .hero-cta{display:flex; gap:10px; margin-top:6px}
+    /* === Projects grid === */
+    .grid{display:grid; grid-template-columns:repeat(1,minmax(0,1fr)); gap:16px; margin-top:18px}
+    @media(min-width:740px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(min-width:1020px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
-  /* ===== Controls / chips ===== */
-  .controls{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 0}
-  .input, .chip{background:#101010; border:1px solid #1c1c1c; color:var(--txt); border-radius:12px; padding:10px 12px}
-  .input{min-width:220px}
-  .chip{display:inline-flex; align-items:center; gap:8px; cursor:pointer}
-  .chip[data-active="true"]{border-color:var(--accent); box-shadow:0 0 0 3px var(--ring)}
+    .project{display:flex; flex-direction:column; gap:10px; padding:16px}
+    .project h3{margin:0; font-size:1.06rem}
+    .project p{margin:0; color:var(--muted); line-height:1.4}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+    .tag{font-size:.78rem; padding:6px 8px; border:1px solid rgba(225,29,72,.22); background:rgba(225,29,72,.06); border-radius:999px}
 
-  /* ===== Projects grid ===== */
-  .grid{display:grid; grid-template-columns:repeat(1,minmax(0,1fr)); gap:16px; margin-top:18px}
-  @media(min-width:740px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(min-width:1020px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    /* === Project card (ENHETLIG) === */
+    .card.project{
+      position:relative; overflow:hidden;
+      background: linear-gradient(180deg, #131012, #0f0d0e);
+      border:1px solid rgba(225,29,72,.22);
+      box-shadow: 0 12px 30px -20px rgba(225,29,72,.18);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, filter .22s ease;
+      will-change: transform;
+    }
+    /* Glow overlay som ökar på hover */
+    .card.project::after{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background: radial-gradient(120% 90% at 80% -10%, rgba(225,29,72,.18), transparent 55%);
+      opacity:.0; transition: opacity .25s ease;
+    }
+    .card.project:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--elev-strong);
+      border-color: var(--accent-border);
+      filter: brightness(1.06);
+    }
+    .card.project:hover::after{ opacity:1; }
 
-  .project{display:flex; flex-direction:column; gap:10px; padding:16px}
-  .project h3{margin:0; font-size:1.06rem}
-  .project p{margin:0; color:var(--muted); line-height:1.4}
+    /* === Buttons === */
+    .links{display:flex; gap:10px; margin-top:8px; flex-wrap:wrap}
+    .btn{padding:9px 12px; border-radius:12px; border:1px solid #2a2a2a; background:#111; color:var(--txt); transition: border-color .18s ease, filter .18s ease, transform .18s ease;}
+    .btn:hover{border-color:#3a3a3a; transform: translateY(-1px);}
+    .btn.primary, .btn-primary{
+      border-color:var(--accent-border); color:#fff; background:var(--accent-weak);
+      box-shadow:0 0 0 1px rgba(225,29,72,.18) inset;
+    }
+    .btn.primary:hover, .btn-primary:hover{ filter: brightness(1.06); }
 
-  .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
-  .tag{font-size:.78rem; padding:6px 8px; border:1px solid #212121; background:#0d0d0d; border-radius:999px}
+    /* === Mini grid / badges & tools === */
+    .mini-grid{
+      list-style:none; padding:0; margin:0;
+      display:grid; gap:10px;
+      grid-template-columns:repeat(1,minmax(0,1fr));
+    }
+    @media(min-width:640px){ .mini-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(min-width:960px){ .mini-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
 
-  /* ===== Buttons (support both naming styles) ===== */
-  .links{display:flex; gap:10px; margin-top:8px; flex-wrap:wrap}
-  .btn{padding:9px 12px; border-radius:12px; border:1px solid #2a2a2a; background:#111; color:var(--txt)}
-  .btn:hover{border-color:#3a3a3a}
-  .btn.primary, .btn-primary{
-    border-color:var(--accent); color:#fff; background:rgba(225,29,72,.08);
-    box-shadow:0 0 0 1px rgba(225,29,72,.15) inset;
-  }
-  .btn.ghost, .btn-ghost{background:#111}
-  .btn.primary:hover, .btn-primary:hover, .btn.ghost:hover, .btn-ghost:hover{filter:brightness(1.08)}
+    .mini-card{
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255, 255, 255, 0.06);
+      border-radius:12px;
+    }
+    .mini-card2{
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(77, 33, 33, 0.26);
+      border-radius:12px;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background-color .2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;    
+    }
+    .mini-card2:hover{
+      transform: translateY(-2px);
+      border-color: var(--accent-border);
+      box-shadow: 0 8px 22px -14px var(--accent-ring);
+      background: rgba(160, 14, 14, 0.548);
+    }
 
-  /* ===== Footer & misc ===== */
-  footer{margin-top:40px; color:var(--muted); text-align:center}
-  code.inline{background:#101010; padding:2px 6px; border-radius:6px; border:1px solid #1c1c1c}
+    .mini-chip{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid #212121;
+      background:#0d0d0d;
+      border-radius:999px;
+      text-wrap:nowrap;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .mini-chip:hover{
+      transform: translateY(-1px);
+      border-color: var(--accent-border);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+    }
 
-  /* ===== Responsive tweaks for hero ===== */
-  @media (max-width:720px){
-    .hero-photo{order:-1; width:100%}
-    .hero-photo img{width:120px; height:120px}
-  }
-  /* Luftigare typografi */
-.hero-text p{ line-height:1.7; }
+    /* === Footer === */
+    footer{margin-top:40px; color:var(--muted); text-align:center}
+    code.inline{background:#101010; padding:2px 6px; border-radius:6px; border:1px solid #1c1c1c}
 
-/* Block-sektioner i hero */
-.hero-section{ display:grid; gap:.6rem; margin-bottom:1rem; }
-.small{ font-size:.92rem; }
+    /* === Focus (a11y) === */
+    :where(a,button,input,.chip,.btn,.mini-chip,.mini-card2):focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 3px var(--accent-ring);
+      border-color: var(--accent);
+    }
 
-/* Divider mellan block */
-.divider{
-  height:1px; border:0; margin:12px 0;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
-}
-
-/* Mini-grid för fokus/certs/verktyg */
-.mini-grid{
-  list-style:none; padding:0; margin:0;
-  display:grid; gap:10px;
-  grid-template-columns:repeat(1,minmax(0,1fr));
-}
-@media(min-width:640px){ .mini-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(min-width:960px){ .mini-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
-
-/* Kort och chips */
-.mini-card{
-  padding:10px 12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.02);
-  border-radius:12px;
-}
-.mini-chip{
-  display:inline-block;
-  padding:8px 12px;
-  border:1px solid #212121;
-  background:#0d0d0d;
-  border-radius:999px;
-  text-wrap:nowrap;
-}
-/* === Accent system (enhetlig röd) === */
-:root{
-  --accent: #e11d48;                    /* primär röd */
-  --accent-weak: rgba(225,29,72,.12);   /* svag bakgrund */
-  --accent-ring: rgba(225,29,72,.35);   /* ring/skugga */
-  --accent-border: rgba(225,29,72,.45); /* kantnyans */
-}
-
-/* Länkar & hover */
-a { color: var(--txt); text-decoration: none; }
-a:hover {
-  color:#fff;
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 2px;
-}
-
-/* Knappar */
-.btn.primary, .btn-primary{
-  background: var(--accent-weak);
-  border-color: var(--accent-border);
-  color:#fff;
-  box-shadow: 0 0 0 1px rgba(225,29,72,.18) inset, 0 0 0 0 var(--accent-ring);
-}
-.btn.primary:hover, .btn-primary:hover{ filter: brightness(1.06); }
-
-/* Aktiva filterchips */
-.chip[data-active="true"]{
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-ring);
-  background: var(--accent-weak);
-}
-
-/* Projektkorten (grid) – subtil röd ton och tydligare kant) */
-.card.project{
-  background: linear-gradient(180deg, #131012, #0f0d0e);
-  border-color: rgba(225,29,72,.22);
-  box-shadow: 0 12px 30px -20px rgba(225,29,72,.18);
-}
-.card.project:hover{ filter: brightness(1.04); }
-
-/* Taggar – liten accentkant */
-.tag{
-  border-color: rgba(225,29,72,.22);
-  background: rgba(225,29,72,.06);
-}
-
-/* Divider använder accent som mittpunkt */
-.divider{
-  background: linear-gradient(90deg,transparent,var(--accent),transparent);
-  opacity:.25;
-}
-
-/* Fokus (a11y) – snygg röd ring överallt */
-:where(a,button,input,.chip,.btn):focus-visible{
-  outline: none;
-  box-shadow: 0 0 0 3px var(--accent-ring);
-  border-color: var(--accent);
-}
-
-/* Hero-loggan får samma accent (du har redan gradient, denna förstärker) */
-.logo{ box-shadow: 0 0 0 2px rgba(255,255,255,.04), 0 10px 30px -10px var(--accent-ring); }
-
-/* Val: markering av text */
-::selection{ background: var(--accent); color: #fff; }
-</style>
+    /* === Motion reduce === */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -272,81 +259,72 @@ a:hover {
     <!-- Hero -->
     <section class="hero card" id="about">
       <div class="hero-content">
-  <div class="hero-text">
-    <h1>Tom Thorsén - Cybersecurity.</h1>
+        <div class="hero-text">
+          <h1>Tom Thorsén — Cybersecurity</h1>
 
-    <!-- Block 1: Intro -->
-    <section class="hero-section">
-      <p>
-        Studerar till <strong>IT- & Cybersäkerhetsspecialist (2025–2027)</strong> vid
-        <em>Frans Schartaus Handelsinstitut</em>. Jag älskar att lära mig nya saker — om ett verktyg, program eller system krävs för att lösa något, så nöter jag det tills det sitter.
-        Jag drivs av att förstå hur saker fungerar, både på hårdvaru- och mjukvarunivå, och jag trivs lika bra när jag bygger som när jag felsöker eller säkrar upp.<br>
-        <br>
+          <!-- Intro -->
+          <section class="hero-section">
+            <p>
+              Studerar till <strong>IT- & Cybersäkerhetsspecialist (2025–2027)</strong> vid
+              <em>Frans Schartaus Handelsinstitut</em>. Jag älskar att lära mig nya saker och sätter mig snabbt in i nya verktyg och system när det behövs. Jag drivs av att förstå hur saker fungerar – både hårdvara och mjukvara – och trivs lika bra när jag bygger som när jag felsöker och säkrar upp.
+              <br><br>
+              Tidigare tatuerare & studioägare, van vid <strong>struktur</strong>, <strong>ansvar</strong> och <strong>tydlig kommunikation</strong> under press — egenskaper jag nu tar med mig in i cybersäkerhetsvärlden.
+              Jag söker <strong>praktik (LIA) hösten 2026</strong> för att växa, bidra och fördjupa mig i skarpa säkerhetsmiljöer.
+            </p>
+            <p class="muted small">
+              <strong>Kurser (urval):</strong> Juridik & Informationssäkerhet · Kommunikation & agila arbetssätt · Nätverkssäkerhet · Applied Script · Applikationssäkerhet · Endpoint Security ·
+              Säkerhet i moln & virtuella tjänster · AI/Automation/ML · Incidenthantering · Security Assessment
+            </p>
+          </section>
 
-        Tidigare tatuerare och studioägare, van vid <strong>struktur</strong>, <strong>ansvar</strong> och <strong>kundkontakt</strong> – egenskaper jag nu tar med mig in i cybersäkerhetsvärlden.
-        Jag söker <strong>Praktik hösten 2026</strong>, där jag får möjlighet att växa, bidra och fördjupa mig i verkliga säkerhetsutmaningar.
-      </p>
-      <p class="muted small"><strong>Kurser:</strong> Nätverkssäkerhet · Incidenthantering · Applied Script · Moln & virtualisering · Applikationssäkerhet · AI/Automation/ML AI, Automation och Machine learning · Applied Script · Applikationssäkerhet · Endpoint Security · Incidenthantering · Juridik och Informationssäkerhet · Kommunikation, agila arbetssätt och projektmetodik · Nätverkssäkerhet · Security Assessment · Säkerhet i moln och virtuella tjänster</p>
+          <hr class="divider">
+
+          <!-- Tools -->
+          <section class="hero-section">
+            <h2>Tools & resources</h2>
+            <ul class="mini-grid">
+              <li class="mini-chip">TryHackMe</li>
+              <li class="mini-chip">Metasploit</li>
+              <li class="mini-chip">Python</li>
+              <li class="mini-chip">Wireshark</li>
+              <li class="mini-chip">Kali Linux</li>
+              <li class="mini-chip">VMware</li>
+              <li class="mini-chip">Packet Tracer</li>
+              <li class="mini-chip">VS Code</li>
+              <li class="mini-chip">GitHub</li>
+              <li class="mini-chip">Burp Suite</li>
+              <li class="mini-chip">Unreal Engine</li>
+              <li class="mini-chip">Blender</li>
+            </ul>
+          </section>
+
+          <!-- Certs -->
+          <section class="hero-section">
+            <h3>Certs & Badges</h3>
+            <ul class="mini-grid">
+              <li class="mini-card2">ISC² CC</li>
+              <li class="mini-card2">Cisco Networking Basics<a class="btn btn-primary" style="margin-left:15px"
+                href="https://www.credly.com/badges/474e4983-fdc5-45ac-9ed3-1f0dbca18a3e/public_url" target="_blank" rel="noreferrer">Verifiera</a></li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="hero-photo">
+          <img src="/assets/tt.png" alt="Porträtt av Tom Thorsén">
+        </div>
+      </div>
     </section>
 
-    <hr class="divider">
-
-    <!-- Block 2: Fokus -->
-    <section class="hero-section">
-      <h3>This is fun!</h3>
-      <ul class="mini-grid">
-        <li class="mini-card">Nätverkssäkerhet</li>
-        <li class="mini-card">Penetrationstester</li>
-        <li class="mini-card">Incidenthantering</li>
-        <li class="mini-card">Ethical Hacking</li>
-      </ul>
-    </section>
-
-    <!-- Block 3: Tools and resources -->
-    <section class="hero-section">
-      <h3>🛠️ Tools and resources</h3>
-      <ul class="mini-grid">
-        <li class="mini-chip">Try-Hackme</li>
-        <li class="mini-chip">Metasploit</li>
-        <li class="mini-chip">Python</li>
-        <li class="mini-chip">Wireshark</li>
-        <li class="mini-chip">Kali</li>
-        <li class="mini-chip">VMware</li>
-        <li class="mini-chip">Packet Tracer</li>
-        <li class="mini-chip">VS Code</li>
-        <li class="mini-chip">Github</li>
-      </ul>
-    </section>
-
-      <!-- Block 3,5: Certs & Verktyg -->
-    <section class="hero-section">
-      <h3>🛠️ Certs & Badges</h3>
-      <ul class="mini-grid">
-        <li class="mini-card">ISC² CC</li>
-        <li class="mini-card">Cisco Networking Basics</li>
-      </ul>
-    </section>
-
-    <hr class="divider">
-    <hr class="divider">
-    <!-- Block 4: Profil & CTA -->
-    
-  </div>
-
-  <div class="hero-photo">
-    <img src="/assets/tt.png" alt="Porträtt av Tom Thorsén">
-  </div>
-</div>
-
-<!-- Sök & filter oförändrat -->
-<div class="controls" role="toolbar" aria-label="Projektfilter">
-  <input class="input" id="q" placeholder="Sök projekt (t.ex. VLAN, Python)" aria-label="Sök projekt" />
-  <button class="chip" data-filter="all" data-active="true" aria-pressed="true">Alla</button>
-  <button class="chip" data-filter="CyberSec">CyberSec</button>
-  <button class="chip" data-filter="Networking">Networking</button>
-  <button class="chip" data-filter="Python">Python</button>
-  <button class="chip" data-filter="Design">Design</button>
-</div>
+    <!-- Sök & filter (fristående kort) -->
+    <section class="card search-panel" role="search" aria-label="Sök och filtrera projekt">
+      <div class="controls" role="toolbar" aria-label="Projektfilter">
+        <input class="input" id="q" placeholder="Sök projekt (t.ex. VLAN, Python)" aria-label="Sök projekt" />
+        <button class="chip" data-filter="all" data-active="true" aria-pressed="true">Alla</button>
+        <button class="chip" data-filter="CyberSec" aria-pressed="false">CyberSec</button>
+        <button class="chip" data-filter="Networking" aria-pressed="false">Networking</button>
+        <button class="chip" data-filter="Python" aria-pressed="false">Python</button>
+        <button class="chip" data-filter="Design" aria-pressed="false">Design</button>
+      </div>
     </section>
 
     <!-- Projekt -->
@@ -366,11 +344,11 @@ a:hover {
     <footer></footer>
   </div>
 
-  <!-- 📦 Projektdata: lägg till ett nytt objekt i arrayen så dyker projektet upp automatiskt. -->
+  <!-- 📦 Projektdata -->
   <script type="application/json" id="projects-data">[
     {
-      "title":"Packet Tracer — VLAN & Router‑on‑a‑Stick",
-      "summary":"Byggde VLAN 10/20/30, trunkar, subinterfaces och DHCP pools. Dokumenterade felsökning (Native VLAN mismatch, DHCP fail)",
+      "title":"Packet Tracer — VLAN & Router-on-a-Stick",
+      "summary":"Byggde VLAN 10/20/30, trunkar, subinterfaces och DHCP pools. Dokumenterade felsökning (Native VLAN mismatch, DHCP fail).",
       "tags":["CyberSec","Networking"],
       "links":[
         {"label":"Repo","href":"https://github.com/twtct80/pt-vlan-lab"},
@@ -378,24 +356,24 @@ a:hover {
       ]
     },
     {
-      "title":"TryHackMe — Progress & Lärdomar",
-      "summary":"Sammanställning av rum (ex. Blue, Kioptrix). Fokus: metodik, anteckningar, vad jag lärde mig, förbättringar.",
+      "title":"TryHackMe — Progress & lärdomar",
+      "summary":"Sammanställning av rum (t.ex. Blue, Kioptrix). Fokus: metodik, anteckningar, vad jag lärde mig, förbättringar.",
       "tags":["CyberSec"],
       "links":[
         {"label":"Notebook","href":"#"}
       ]
     },
     {
-      "title":"Python — Mini Portscanner",
-      "summary":"Litet CLI‑verktyg (socket, argparse, concurrency) + säkerhetsnotis om ansvarsfull användning.",
+      "title":"Python — Mini-portscanner",
+      "summary":"Litet CLI-verktyg (socket, argparse, concurrency) + säkerhetsnotis om ansvarsfull användning.",
       "tags":["Python","CyberSec"],
       "links":[
         {"label":"Repo","href":"https://github.com/twtct80/py-portscan"}
       ]
     },
     {
-      "title":"My old Portfolio",
-      "summary":"Created this webpage as a portfolio for my artsy and creative side.",
+      "title":"##- Old Portfolio -##",
+      "summary":"Min tidigare portfolio från min kreativa bakgrund (byggd under JS-studier).",
       "tags":["Design"],
       "links":[
         {"label":"Visit","href":"https://twtct80.github.io/old-portfolio"}
@@ -428,7 +406,7 @@ a:hover {
     function linkBtn(l){
       const a = document.createElement('a');
       a.className='btn';
-      if(/^(live|repo)$/i.test(l.label)) a.classList.add('primary');
+      if(/^(live|repo|visit)$/i.test(l.label)) a.classList.add('primary');
       a.href=l.href; a.target='_blank'; a.rel='noreferrer'; a.textContent=l.label; return a;
     }
 
@@ -452,19 +430,26 @@ a:hover {
       }
     }
 
-    // interactions test
+    // Filterchips interaktion + ARIA
     document.querySelectorAll('.chip').forEach(ch=>{
       ch.addEventListener('click',()=>{
-        document.querySelectorAll('.chip').forEach(x=>x.dataset.active='false');
+        document.querySelectorAll('.chip').forEach(x=>{
+          x.dataset.active='false';
+          x.setAttribute('aria-pressed','false');
+        });
         ch.dataset.active='true';
+        ch.setAttribute('aria-pressed','true');
         state.filter = ch.dataset.filter;
         render();
+      });
+      ch.addEventListener('keydown',(e)=>{
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); ch.click(); }
       });
     });
 
     $q.addEventListener('input', (e)=>{ state.q = e.target.value.trim().toLowerCase(); render(); });
 
-    // init
+    // Init
     render();
   </script>
 </body>
